@@ -8,7 +8,7 @@
     "dist"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/andrewf3009"
+    "@0xATHERIS:registry": "https://npm.pkg.github.com/"
   },
   "types": "dist/index.d.ts",
   "scripts": {
