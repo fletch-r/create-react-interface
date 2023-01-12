@@ -1,8 +1,9 @@
 {
 	"name": "create-react-interface",
-	"version": "0.0.1",
+	"version": "0.1.2",
 	"description": "React UI Library",
 	"author": "0xATHERIS",
+	"type": "module",
 	"bin": "./bin/cli.js",
 	"main": "dist/cjs/index.js",
 	"module": "dist/esm/index.js",
