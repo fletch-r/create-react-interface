@@ -1,6 +1,6 @@
 {
 	"name": "create-react-interface",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "React UI Library",
 	"author": "0xATHERIS",
 	"type": "module",
@@ -20,10 +20,7 @@
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/0xATHERIS/create-react-interface.git"
-	},
+	"repository": "git://github.com/0xATHERIS/create-react-interface.git",
 	"keywords": [],
 	"license": "ISC",
 	"bugs": {
