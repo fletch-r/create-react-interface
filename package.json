@@ -11,7 +11,7 @@
 		"dist"
 	],
 	"publishConfig": {
-		"0xATHERIS:registry": "https://npm.pkg.github.com/"
+		"registry": "https://npm.pkg.github.com/"
 	},
 	"types": "dist/index.d.ts",
 	"scripts": {
