@@ -20,6 +20,7 @@
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook"
 	},
+	"url": "git://github.com/0xATHERIS/create-react-interface.git",
 	"repository": "git://github.com/0xATHERIS/create-react-interface.git",
 	"keywords": [],
 	"license": "ISC",
