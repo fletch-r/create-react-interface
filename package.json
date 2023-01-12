@@ -1,6 +1,6 @@
 {
 	"name": "create-react-interface",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"description": "React UI Library",
 	"author": "0xATHERIS",
 	"type": "module",
@@ -21,8 +21,14 @@
 		"build-storybook": "build-storybook"
 	},
 	"url": "git://github.com/0xATHERIS/create-react-interface.git",
-	"repository": "git://github.com/0xATHERIS/create-react-interface.git",
-	"keywords": [],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/0xATHERIS/create-react-interface.git"
+	},
+	"keywords": [
+		"ui",
+		"component library"
+	],
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/0xATHERIS/create-react-interface/issues"
