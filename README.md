@@ -4,7 +4,7 @@ Create-React-Interface lets you quickly set up a library ready for your personal
 
 ### How to install:
 ```sh
-npx create-react-interface my-ui-library
+npx create-react-interface <your-library-name>
 ```
 
 ### After installation:
