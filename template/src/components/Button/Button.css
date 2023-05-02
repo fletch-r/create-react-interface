@@ -1,0 +1,16 @@
+.example-button {
+    all: unset;
+    background-color: #5DADE2;
+    padding: .5rem .75rem;
+    color: #EBF5FB;
+    border-radius: 4px;
+    box-shadow: 0px 2px 2px #A9CCE3;
+    font-family: "Arial";
+}
+
+.example-button:hover {
+    transform: translateY(2px);
+    box-shadow: 0 0 0;
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+}
