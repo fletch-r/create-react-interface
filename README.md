@@ -9,7 +9,7 @@ npx create-react-interface <your-library-name>
 
 ### After installation:
 ```sh
-cd my-ui-library
+cd <your-library-name>
 npm run storybook
 ```
 
@@ -23,4 +23,3 @@ Links for their documention are below.
 | Storybook | [storybook.js.com](https://storybook.js.org/docs/react/get-started/introduction) |
 | Typescript | [React TypeScript](https://www.typescriptlang.org/docs/handbook/react.html) |
 | Roll-Up | [RollUp Github](https://github.com/rollup/rollup) |
-| Babel | [Babel Github](https://github.com/babel/babel) |
