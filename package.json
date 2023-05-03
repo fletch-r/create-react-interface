@@ -22,15 +22,9 @@
     "url": "https://github.com/0xATHERIS/create-react-interface/issues"
   },
   "homepage": "https://github.com/0xATHERIS/create-react-interface#readme",
-  "dependencies": {
-    "chalk": "^5.2.0",
-    "commander": "^10.0.1",
-    "url": "^0.11.0"
-  },
   "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.16.3",
-    "child_process": "^1.0.2",
-    "cross-spawn": "^7.0.3",
     "fs-extra": "^11.1.1"
   }
 }
