@@ -28,10 +28,12 @@
   "homepage": "https://github.com/0xATHERIS/create-react-interface#readme",
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",
+    "@types/inquirer": "^9.0.3",
     "@types/node": "^18.16.3"
   },
   "dependencies": {
-    "path": "^0.12.7",
-    "fs-extra": "^11.1.1"
+    "fs-extra": "^11.1.1",
+    "inquirer": "^8.2.5",
+    "path": "^0.12.7"
   }
 }
