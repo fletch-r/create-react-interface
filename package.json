@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "CLI for creating React UI Libraries",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "publishConfig": {
+		"@0xATHERIS:registry": "https://npm.pkg.github.com/"
+	},
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/0xATHERIS/create-react-interface.git"
