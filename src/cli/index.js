@@ -40,6 +40,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var child_process_1 = require("child_process");
 var fse = require("fs-extra");
 var path = require("path");
+var inquirer = require('inquirer');
 var runCommand = function (command) {
     try {
         (0, child_process_1.execSync)("".concat(command), { stdio: 'inherit' });
@@ -52,19 +53,28 @@ var runCommand = function (command) {
 };
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var repoName, git_commands, checkedOut, srcDir, tmpProjectDir, projectDir, installDepsCommand, installedDeps;
+        var repoName, answers, git_commands, checkedOut, srcDir, tmpProjectDir, projectDir;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     repoName = process.argv[2];
-                    if (!repoName) {
-                        console.error('No Name Provided');
-                        process.exit(1);
-                    }
-                    git_commands = "git clone --depth 1 --no-checkout https://github.com/0xATHERIS/create-react-interface.git ".concat(repoName, "\n\n    cd ").concat(repoName, "\n\n    git sparse-checkout init --cone\n\n    git sparse-checkout set template\n\n    git checkout @");
+                    if (!!repoName) return [3 /*break*/, 2];
+                    return [4 /*yield*/, inquirer
+                            .prompt([
+                            {
+                                name: 'projectName',
+                                message: 'What is the name of the library?'
+                            },
+                        ])];
+                case 1:
+                    answers = _a.sent();
+                    repoName = answers.projectName;
+                    _a.label = 2;
+                case 2:
+                    git_commands = "git clone --depth 1 https://github.com/0xATHERIS/create-react-interface.git ".concat(repoName);
                     console.log("Creating the repository with name: ".concat(repoName));
                     return [4 /*yield*/, runCommand(git_commands)];
-                case 1:
+                case 3:
                     checkedOut = _a.sent();
                     if (!checkedOut) {
                         console.error("Failed to create the repository with name: ".concat(repoName));
@@ -78,17 +88,32 @@ function main() {
                     fse.emptyDirSync(projectDir);
                     fse.copySync(tmpProjectDir, projectDir, { overwrite: true });
                     fse.rmSync(tmpProjectDir, { recursive: true, force: true });
-                    installDepsCommand = "cd ".concat(repoName, " && npm install");
-                    console.log("Installing dependencies for the repository with name: ".concat(repoName));
-                    installedDeps = runCommand(installDepsCommand);
-                    if (!installedDeps) {
-                        console.error("Failed to install dependencies for the repository with name: ".concat(repoName));
-                        process.exit(1);
-                    }
+                    return [4 /*yield*/, inquirer
+                            .prompt([
+                            {
+                                name: 'npmInstall',
+                                message: 'Do you want to do npm install now?',
+                                type: 'confirm'
+                            },
+                        ])
+                            .then(function (answers) {
+                            console.info('Answer:', answers.npmInstall);
+                            if (answers.npmInstall) {
+                                var installDepsCommand = "cd ".concat(repoName, " && npm install");
+                                console.log("Installing dependencies for the repository with name: ".concat(repoName));
+                                var installedDeps = runCommand(installDepsCommand);
+                                if (!installedDeps) {
+                                    console.error("Failed to install dependencies for the repository with name: ".concat(repoName));
+                                    process.exit(1);
+                                }
+                            }
+                        })];
+                case 4:
+                    _a.sent();
                     console.log("Successfully created and installed the repository with name: ".concat(repoName));
                     console.log("Run the following commands to get started:");
                     console.log("cd ".concat(repoName));
-                    console.log("npm start");
+                    console.log("npm run storybook");
                     return [2 /*return*/];
             }
         });
