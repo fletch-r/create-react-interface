@@ -1,8 +1,11 @@
 {
   "name": "create-react-interface",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI for creating React UI Libraries",
   "main": "index.js",
+  "bin": {
+    "create-react-interface": "./src/cli/index.js"
+  },
   "publishConfig": {
 		"@0xATHERIS:registry": "https://npm.pkg.github.com/"
 	},
