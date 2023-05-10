@@ -49,6 +49,10 @@ async function main() {
     fse.copySync(tmpProjectDir, projectDir, { overwrite: true });
     fse.rmSync(tmpProjectDir, { recursive: true, force: true });
 
+    fse.writeFile(`./${repoName}/README.md`, `# ${repoName}`, (err: Error) => {
+        if (err) throw err;
+    });
+
     await inquirer
         .prompt([
             {

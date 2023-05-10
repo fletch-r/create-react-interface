@@ -88,16 +88,19 @@ function main() {
                     fse.emptyDirSync(projectDir);
                     fse.copySync(tmpProjectDir, projectDir, { overwrite: true });
                     fse.rmSync(tmpProjectDir, { recursive: true, force: true });
+                    fse.writeFile("./".concat(repoName, "/README.md"), "# ".concat(repoName), function (err) {
+                        if (err)
+                            throw err;
+                    });
                     return [4 /*yield*/, inquirer
                             .prompt([
                             {
                                 name: 'npmInstall',
-                                message: 'Do you want to do npm install now?',
+                                message: 'Do you want to run npm install now?',
                                 type: 'confirm'
                             },
                         ])
                             .then(function (answers) {
-                            console.info('Answer:', answers.npmInstall);
                             if (answers.npmInstall) {
                                 var installDepsCommand = "cd ".concat(repoName, " && npm install");
                                 console.log("Installing dependencies for the repository with name: ".concat(repoName));
