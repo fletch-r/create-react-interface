@@ -106,6 +106,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["/**/*.ts", "rollup.config.js", "rollup.config.cjs"],
+  "include": ["/**/*.ts", "/**/*.stories.ts", "rollup.config.js", "rollup.config.cjs"],
   "exclude": ["node_modules"],
 }
