@@ -9,7 +9,10 @@
   "publishConfig": {
     "@0xATHERIS:registry": "https://npm.pkg.github.com/"
   },
-  "scripts": {},
+  "scripts": {
+    "dev": "tsc ./src/cli/index.ts && node ./src/cli/index.js",
+    "release": "npm publish"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/0xATHERIS/create-react-interface.git"
