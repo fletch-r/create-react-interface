@@ -51,6 +51,104 @@ var runCommand = function (command) {
     }
     return true;
 };
+function tailwind(repoName) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _this = this;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, inquirer
+                        .prompt([
+                        {
+                            name: 'tailwind',
+                            message: 'Do you want to install tailwindcss?',
+                            type: 'confirm'
+                        },
+                    ])
+                        .then(function (answers) { return __awaiter(_this, void 0, void 0, function () {
+                        var install, installRes, tailwindInit, tailwindInitRes, tailwindconfig, storybookStylingAddon, storybookStylingAddonRes, maints, tailwindcss, previewts, indexts;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    if (!answers.tailwind) return [3 /*break*/, 1];
+                                    install = "cd ".concat(repoName, " && npm install -D tailwindcss postcss autoprefixer");
+                                    installRes = runCommand(install);
+                                    if (!installRes) {
+                                        console.error("Failed to install [tailwindcss postcss autoprefixer] for the repository with name: ".concat(repoName));
+                                        process.exit(1);
+                                    }
+                                    tailwindInit = "cd ".concat(repoName, " && npx tailwindcss init -p");
+                                    tailwindInitRes = runCommand(tailwindInit);
+                                    if (!tailwindInitRes) {
+                                        console.error("Failed to initialize tailwindcss for the repository with name: ".concat(repoName));
+                                        process.exit(1);
+                                    }
+                                    if (!fse.existsSync("./".concat(repoName, "/tailwind.config.js"))) {
+                                        console.error('npx tailwind init failed to initialize,');
+                                        process.exit(1);
+                                    }
+                                    tailwindconfig = "/** @type {import('tailwindcss').Config} */\nmodule.exports = {\n    content: [\"./src/**/*.{js,ts,jsx,tsx}\"],\n    theme: {\n        extend: {},\n    },\n    plugins: [],\n}";
+                                    fse.writeFileSync("./".concat(repoName, "/tailwind.config.js"), tailwindconfig, { encoding: 'utf8', flag: 'w' });
+                                    storybookStylingAddon = "cd ".concat(repoName, " && npm i -D @storybook/addon-styling");
+                                    storybookStylingAddonRes = runCommand(storybookStylingAddon);
+                                    if (!storybookStylingAddonRes) {
+                                        console.error('Failed to install @storybook/addon-styling.');
+                                        process.exit(1);
+                                    }
+                                    maints = "import type { StorybookConfig } from \"@storybook/react-webpack5\";\n\nconst config: StorybookConfig = {\n    stories: [\"../src/**/*.mdx\", \"../src/**/*.stories.@(js|jsx|ts|tsx)\"],\n    addons: [\n        \"@storybook/addon-links\",\n        \"@storybook/addon-essentials\",\n        \"@storybook/addon-interactions\",\n        {\n            name: '@storybook/addon-styling',\n            options: {\n                // Check out https://github.com/storybookjs/addon-styling/blob/main/docs/api.md\n                // For more details on this addon's options.\n                postCss: true,\n            },\n        },\n    ],\n    framework: {\n        name: \"@storybook/react-webpack5\",\n        options: {},\n    },\n    docs: {\n        autodocs: \"tag\",\n    },\n};\n\nexport default config;";
+                                    fse.writeFileSync("./".concat(repoName, "/.storybook/main.ts"), maints, { encoding: 'utf8', flag: 'w' });
+                                    tailwindcss = "@tailwind base;\n@tailwind components;\n@tailwind utilities;";
+                                    fse.writeFileSync("./".concat(repoName, "/src/tailwind.css"), tailwindcss, { encoding: 'utf8', flag: 'w' });
+                                    previewts = "import '../src/tailwind.css';\nimport type { Preview } from \"@storybook/react\";\n\nconst preview: Preview = {\n    parameters: {\n        actions: { argTypesRegex: \"^on[A-Z].*\" },\n        controls: {\n            matchers: {\n                color: /(background|color)$/i,\n                date: /Date$/,\n            },\n        },\n    },\n};\n\nexport default preview;";
+                                    fse.writeFileSync("./".concat(repoName, "/.storybook/preview.ts"), previewts, { encoding: 'utf8', flag: 'w' });
+                                    indexts = "import '../src/tailwind.css';\n\nexport * from \"./components\";";
+                                    fse.writeFileSync("./".concat(repoName, "/src/index.ts"), indexts, { encoding: 'utf8', flag: 'w' });
+                                    console.log('Finished installing tailwindcss');
+                                    return [3 /*break*/, 3];
+                                case 1: return [4 /*yield*/, npmInstall(repoName)];
+                                case 2:
+                                    _a.sent();
+                                    _a.label = 3;
+                                case 3: return [2 /*return*/];
+                            }
+                        });
+                    }); })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function npmInstall(repoName) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, inquirer
+                        .prompt([
+                        {
+                            name: 'npmInstall',
+                            message: 'Do you want to run npm install now?',
+                            type: 'confirm'
+                        },
+                    ])
+                        .then(function (answers) {
+                        if (answers.npmInstall) {
+                            var installDepsCommand = "cd ".concat(repoName, " && npm install");
+                            console.log("Installing dependencies for the repository with name: ".concat(repoName));
+                            var installedDeps = runCommand(installDepsCommand);
+                            if (!installedDeps) {
+                                console.error("Failed to install dependencies for the repository with name: ".concat(repoName));
+                                process.exit(1);
+                            }
+                        }
+                    })];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var repoName, answers, git_commands, checkedOut, srcDir, tmpProjectDir, projectDir;
@@ -92,25 +190,7 @@ function main() {
                         if (err)
                             throw err;
                     });
-                    return [4 /*yield*/, inquirer
-                            .prompt([
-                            {
-                                name: 'npmInstall',
-                                message: 'Do you want to run npm install now?',
-                                type: 'confirm'
-                            },
-                        ])
-                            .then(function (answers) {
-                            if (answers.npmInstall) {
-                                var installDepsCommand = "cd ".concat(repoName, " && npm install");
-                                console.log("Installing dependencies for the repository with name: ".concat(repoName));
-                                var installedDeps = runCommand(installDepsCommand);
-                                if (!installedDeps) {
-                                    console.error("Failed to install dependencies for the repository with name: ".concat(repoName));
-                                    process.exit(1);
-                                }
-                            }
-                        })];
+                    return [4 /*yield*/, tailwind(repoName)];
                 case 4:
                     _a.sent();
                     console.log("Successfully created and installed the repository with name: ".concat(repoName));
