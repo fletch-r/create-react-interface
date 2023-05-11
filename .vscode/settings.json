@@ -1,5 +1,6 @@
 {
     "simpleCommit.scopes": [
         "release"
-    ]
+    ],
+    "simpleCommit.template": "<type><scope>: <emoji> #<number> - <description>\n\n<body>\n\n<footer>"
 }

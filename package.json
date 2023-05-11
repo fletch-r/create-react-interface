@@ -10,7 +10,8 @@
     "@0xATHERIS:registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
-    "dev": "tsc ./src/cli/index.ts && node ./src/cli/index.js",
+    "build": "tsc ./src/cli/index.ts",
+    "dev": "npm run build && node ./src/cli/index.js",
     "release": "npm publish"
   },
   "repository": {
