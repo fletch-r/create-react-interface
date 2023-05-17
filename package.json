@@ -2,7 +2,6 @@
   "name": "create-react-interface",
   "version": "1.3.0",
   "description": "CLI for creating React UI Libraries",
-  "main": "index.js",
   "bin": {
     "create-react-interface": "./src/cli/index.js"
   },
